@@ -13,7 +13,6 @@ const router = createBrowserRouter(
             <Route path="/favorites" element={<Favourites />} />
             <Route path="/top-rated" element={<TopRatedShows />} />
         </Route>
-
     )
 )
 
