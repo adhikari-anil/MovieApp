@@ -9,8 +9,8 @@ const Slidebar = () => {
 
   return (
     <>
-      <div className="h-screen flex flex-col justify-between items-center p-5 border-r-[0.5px] border-r-gray-dark/50 transition-all">
-        <div className="flex flex-col gap-10 bg-black text-white">
+      <div className={`${isToggle?"h-screen flex flex-col justify-between items-center p-5 border-r-[0.5px] border-r-gray-dark/50 transition-all w-fit":"h-screen flex flex-col justify-between items-center p-5 border-r-[0.5px] border-r-gray-dark/50 transition-all"}`}>
+        <div className={`${isToggle?"flex flex-col items-center justify-center gap-5 bg-black text-white":"flex flex-col gap-10 bg-black text-white"}`}>
           <header className="flex gap-3 items-center  justify-start">
             <div
               className={`${isToggle ? "hidden" : "flex items-center gap-3"}`}
@@ -25,21 +25,22 @@ const Slidebar = () => {
               }}
             />
           </header>
-          <div className="flex flex-col gap-8 p-4">
+          <div className={`${isToggle?"flex flex-col items-center gap-8 p-4":"flex flex-col gap-8 p-4"}`}>
             <h5>Menu</h5>
-            <div className="flex flex-col gap-3">
+            <div className={`${isToggle?"flex flex-col justify-center items-center w-fit gap-3":"flex flex-col gap-3"}`}>
               {NavBarItems.map((item, index) => (
                 <MenuItem
                   name={item.name}
                   path={item.path}
                   icon={item.icon}
+                  isToggle={isToggle}
                   key={index}
                 />
               ))}
             </div>
           </div>
         </div>
-        <GoogleSignIn />
+        <GoogleSignIn isToggle={isToggle}/>
       </div>
     </>
   );
