@@ -25,9 +25,9 @@ const Slidebar = () => {
               }}
             />
           </header>
-          <div className={`${isToggle?"flex flex-col items-center gap-8 p-4":"flex flex-col gap-8 p-4"}`}>
+          <div className={`${isToggle?"flex flex-col items-center gap-8 p-4":"flex flex-col gap-8 p-2"}`}>
             <h5>Menu</h5>
-            <div className={`${isToggle?"flex flex-col justify-center items-center w-fit gap-3":"flex flex-col gap-3"}`}>
+            <div className={`${isToggle?"flex flex-col justify-center items-center w-fit gap-3":"flex flex-col justify-center gap-3"}`}>
               {NavBarItems.map((item, index) => (
                 <MenuItem
                   name={item.name}
