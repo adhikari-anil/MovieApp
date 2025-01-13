@@ -1,52 +1,30 @@
-import { Button } from "../../components/ui/button";
-
+import { movies } from "@/constant/Movies";
+import { StreamPlatform } from "@/_components/Dialog";
 const Home = () => {
   return (
-    // <div className="flex">
-    //   <div className="flex">
-    //     <img
-    //       src="https://images.pexels.com/photos/12325254/pexels-photo-12325254.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-    //       alt="Movie Picture"
-    //       width={600}
-    //       height={80}
-    //     />
-    //     <div className="z-10">
-    //       <p>Name of Movie</p>
-    //       <p>Rating *****</p>
-    //       <p>Liked Percentage: 82%</p>
-    //     </div>
-    //   </div>
-    // </div>
-    <div className="relative w-full h-[400px] gap-5">
-      {/* Background Image */}
-      <img
-        className="absolute inset-0 w-full h-full object-cover"
-        src="https://images.pexels.com/photos/12325254/pexels-photo-12325254.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt="Movie Background"
-      />
+    <div className="h-full w-full max-h-screen overflow-hidden">
+      <div className="h-full overflow-y-auto">
+        <div className="p-4 space-y-4 flex flex-col gap-4">
+          {movies.map((movie) => (
+            <div key={movie.name} className="flex flex-row h-48 w-full gap-4">
+              {/* Image container */}
+              <div className="w-[20%] h-full">
+                <img
+                  src={movie.image}
+                  alt={movie.name}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
 
-      {/* Overlay Text */}
-      <div className="absolute top-0 right-0 z-10 bg-black bg-opacity-50 w-[50%] text-white p-4">
-        <h1 className="text-lg font-bold">Name of Movie</h1>
-        <p className="text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident
-          sint illo, deleniti, exercitationem quis in modi quibusdam incidunt
-          praesentium laudantium fuga optio ratione vero, distinctio cum laborum
-          facilis itaque error?
-        </p>
-        <div className="flex">
-          <Button
-            className="flex gap-3 text-[13px] border-gray-400 text-black rounded-full"
-            variant={"outline"}
-          >
-            <h2> Watch Now</h2>
-          </Button>
-          <Button
-            className="flex gap-3 text-[13px] border-gray-400 text-black rounded-full"
-            variant={"outline"}
-          >
-            <h2> Explore </h2>
-          </Button>
+              {/* StreamPlatform container */}
+              <div className="w-[80%] h-full">
+                <StreamPlatform
+                  trailerUrl={movie.trailerUrl}
+                  movieDetails={movie}
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
