@@ -8,7 +8,12 @@ import {
 import { useState } from "react";
 import { PlayCircle, Info } from "lucide-react";
 
-export function StreamPlatform({ trailerUrl, movieDetails }) {
+interface Movie{
+  trailerUrl: string,
+  movieDetails: any
+}
+
+export function StreamPlatform({ trailerUrl, movieDetails }: Movie) {
   const [isHovered, setIsHovered] = useState(false);
 
   // const getEmbedUrl = (url) => {
