@@ -2,7 +2,7 @@ import { movies } from "@/constant/Movies";
 import { StreamPlatform } from "@/_components/Dialog";
 const Home = () => {
   return (
-    <div className="h-full w-full max-h-screen overflow-hidden">
+    <div className="h-full w-full overflow-hidden">
       <div className="h-full overflow-y-auto">
         <div className="p-4 space-y-4 flex flex-col gap-4">
           {movies.map((movie) => (
