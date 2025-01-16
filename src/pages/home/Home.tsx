@@ -5,8 +5,8 @@ const Home = () => {
     <div className="h-full w-full overflow-hidden">
       <div className="h-full overflow-y-auto">
         <div className="p-4 space-y-4 flex flex-col gap-4">
-          {movies.map((movie) => (
-            <div key={movie.name} className="flex flex-row h-48 w-full gap-4">
+          {movies.map((movie,index) => (
+            <div key={index} className="flex flex-row h-48 w-full gap-4">
               {/* Image container */}
               <div className="w-[20%] h-full">
                 <img

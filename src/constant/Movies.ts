@@ -20,18 +20,4 @@ export const movies = [
     background: "https://i.ytimg.com/vi/hWBdGt_CaZM/maxresdefault.jpg",
     rating: 8.6,
   },
-  {
-    name: "Badass Ravikumar",
-    trailerUrl: "https://www.youtube.com/embed/hWBdGt_CaZM?si=i110uob2QNOZBj2c",
-    image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/Badass_Ravi_Kumar_film_poster.jpg/220px-Badass_Ravi_Kumar_film_poster.jpg",
-    background: "https://i.ytimg.com/vi/hWBdGt_CaZM/maxresdefault.jpg",
-    rating: 8.6,
-  },
-  {
-    name: "Badass Ravikumar",
-    trailerUrl: "https://www.youtube.com/embed/hWBdGt_CaZM?si=i110uob2QNOZBj2c",
-    image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/Badass_Ravi_Kumar_film_poster.jpg/220px-Badass_Ravi_Kumar_film_poster.jpg",
-    background: "https://i.ytimg.com/vi/hWBdGt_CaZM/maxresdefault.jpg",
-    rating: 8.6,
-  },
 ];
