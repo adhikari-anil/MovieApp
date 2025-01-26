@@ -1,31 +1,28 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
-//import { Outlet } from "react-router-dom";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Home from "@/pages/home/Home";
 import useType from "@/store/useType";
+//import { Outlet } from "react-router-dom";
+import HomeMovies from "@/pages/home/HomeMovies";
+import HomeTvSeries from "@/pages/home/HomeTvSeries";
 
 const HeadComponent = () => {
-  const [movie, setToggle] = useState("tvshows");
-  const setType = useType((state)=>state.setType);
+  // const [movie, setToggle] = useState("tvshows");
+  const setType = useType((state) => state.setType);
+  const type = useType((state) => state.type);
 
-  const handleMovieClick = ()=>{
+  const handleMovieClick = () => {
+    console.log("Movie clicked!");
     setType("movies");
-    setToggle("movie")
-  }
-  const handleTvClick = ()=>{
+  };
+  const handleTvClick = () => {
+    console.log("TV clicked!");
     setType("tv");
-    setToggle("tvshows");
-  }
-  const handleLoad = ()=>{
-    setType("tv");
-    console.log("Handaling load");
-  }
+  };
   return (
     <div className="h-screen">
       <Tabs defaultValue="movies" className="h-full flex flex-col">
         <TabsList className="sticky top-0 z-10 justify-start">
-          <TabsTrigger value="tvshows" onClick={handleTvClick} onLoad={handleLoad}>
+          <TabsTrigger value="tvshows" onClick={handleTvClick}>
             TV SHOWS
           </TabsTrigger>
           <TabsTrigger value="movies" onClick={handleMovieClick}>
@@ -33,16 +30,25 @@ const HeadComponent = () => {
           </TabsTrigger>
         </TabsList>
         <div className="h-[calc(100%-48px)]">
-          {movie==="movies"?(
+          {type === "movies" ? (
             <TabsContent
-            value={movie}
-            className="h-full data-[state=active]:h-full"
-          >
-            <ScrollArea className="h-full">
-              <Home />
-            </ScrollArea>
-          </TabsContent>
-          ):null}
+              value="movies"
+              className="h-full data-[state=active]:h-full"
+            >
+              <ScrollArea className="h-full">
+                <HomeMovies />
+              </ScrollArea>
+            </TabsContent>
+          ) : (
+            <TabsContent
+              value="tvshows"
+              className="h-full data-[state=active]:h-full"
+            >
+              <ScrollArea className="h-full">
+                <HomeTvSeries />
+              </ScrollArea>
+            </TabsContent>
+          )}
         </div>
       </Tabs>
     </div>

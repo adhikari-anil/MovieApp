@@ -28,7 +28,7 @@ const TopRatedTvshow = () => {
   }, [getTopRatedShow]);
   return (
     <div className="flex flex-col gap-3 h-1/2">
-      <h2> TopRatedTvShow </h2>
+      {type==="tv"?<h2> TopTvShows </h2>:<h2> TopMovies </h2>}
       <ScrollArea className="h-full">
         {topRatedMovies.map((movie, index) => (
           <Card
