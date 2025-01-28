@@ -44,7 +44,7 @@ const HomeTvSeries = () => {
         </div>
       </div>
       <h1 className="text-white p-2 font-mono text-2xl">Trending Series</h1>
-      <div className="p-2 grid grid-cols-5 gap-4 h-fit w-fit">
+      <div className="p-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 h-fit w-fit">
         {topTrending.map((movie, index) => (
           <MovieCard
             title={movie.original_title || movie.original_name}
