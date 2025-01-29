@@ -6,7 +6,9 @@ const layout = () => {
   return (
     <>
       <div className="h-screen flex justify-between w-full bg-black text-white">
-        <Slidebar />
+        <div>
+          <Slidebar />
+        </div>
         <div className="flex flex-col gap-4 w-full">
           <HeadComponent />
         </div>

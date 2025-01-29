@@ -1,8 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useType from "@/store/useType";
-//import { Outlet } from "react-router-dom";
-import HomeMovies from "@/pages/home/HomeMovies";
 import HomeTvSeries from "@/pages/home/HomeTvSeries";
 
 const HeadComponent = () => {
@@ -20,9 +18,9 @@ const HeadComponent = () => {
   };
   return (
     <div className="h-screen">
-      <Tabs defaultValue="movies" className="h-full flex flex-col">
+      <Tabs value={type} className="h-full flex flex-col">
         <TabsList className="sticky top-0 z-10 justify-start">
-          <TabsTrigger value="tvshows" onClick={handleTvClick}>
+          <TabsTrigger value="tv" onClick={handleTvClick}>
             TV SHOWS
           </TabsTrigger>
           <TabsTrigger value="movies" onClick={handleMovieClick}>
@@ -30,25 +28,14 @@ const HeadComponent = () => {
           </TabsTrigger>
         </TabsList>
         <div className="h-[calc(100%-48px)]">
-          {type === "movies" ? (
-            <TabsContent
-              value="movies"
-              className="h-full data-[state=active]:h-full"
-            >
-              <ScrollArea className="h-full">
-                <HomeMovies />
-              </ScrollArea>
-            </TabsContent>
-          ) : (
-            <TabsContent
-              value="tvshows"
-              className="h-full data-[state=active]:h-full"
-            >
-              <ScrollArea className="h-full">
-                <HomeTvSeries />
-              </ScrollArea>
-            </TabsContent>
-          )}
+          <TabsContent
+            value={type}
+            className="h-full data-[state=active]:h-full"
+          >
+            <ScrollArea className="h-full">
+              <HomeTvSeries />
+            </ScrollArea>
+          </TabsContent>
         </div>
       </Tabs>
     </div>

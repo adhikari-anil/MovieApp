@@ -10,6 +10,7 @@ const TopRatedTvshow = () => {
 
   const getTopRatedShow = useCallback(async () => {
     try {
+      setTopRatedMovies([]);
       if (type === "movies") {
         const response = await getTopTrendingMovies(1);
         console.log("From MovieAPI: ", response.data.results);

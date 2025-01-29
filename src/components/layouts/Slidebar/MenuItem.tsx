@@ -14,7 +14,7 @@ const MenuItem = ({name,icon,path, isToggle}: IMenuProps) => {
     <Link to={path} className={`${isToggle?"flex justify-center items-center gap-5":"flex items-center gap-5"}`}>
       <div className={`${isToggle?"flex justify-center items-center gap-5":"flex gap-3"}`}>
         <div className={`${isToggle?"w-10 h-10":"p-1"}`}>{icon}</div>
-        <div className={`${isToggle?"hidden":""}`}>{name}</div>
+        <div className={`${isToggle?"hidden":"md:block hidden"}`}>{name}</div>
       </div>
     </Link>
   )

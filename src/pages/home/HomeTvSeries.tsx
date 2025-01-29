@@ -12,10 +12,12 @@ const HomeTvSeries = () => {
 
   const getTopTrending = useCallback(async () => {
     try {
+      setTopTrending([]);
       if (type === "movies") {
         const response = await getTopTrendingMovies(1);
         setTopTrending(response.data.results);
-      } else {
+      } else if(type==="tv") {
+        console.log("Reached Here!");
         const response = await getTopTrendingTvShows(1);
         setTopTrending(response.data.results);
       }
@@ -26,7 +28,7 @@ const HomeTvSeries = () => {
 
   useEffect(() => {
     getTopTrending();
-  }, [getTopTrending]);
+  }, [type,getTopTrending]);
 
   return (
     <div className="h-full w-full overflow-hidden">
@@ -43,7 +45,7 @@ const HomeTvSeries = () => {
           </div>
         </div>
       </div>
-      <h1 className="text-white p-2 font-mono text-2xl">Trending Series</h1>
+      <h1 className="text-white p-2 font-mono text-2xl">Trending {type}</h1>
       <div className="p-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 h-fit w-fit">
         {topTrending.map((movie, index) => (
           <MovieCard

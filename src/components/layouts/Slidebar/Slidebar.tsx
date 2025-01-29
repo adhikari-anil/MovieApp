@@ -13,7 +13,7 @@ const Slidebar = () => {
         <div className={`${isToggle?"flex flex-col items-center justify-center gap-5 bg-black text-white":"flex flex-col gap-10 bg-black text-white"}`}>
           <header className="flex gap-3 items-center  justify-start">
             <div
-              className={`${isToggle ? "hidden" : "flex items-center gap-3"}`}
+              className={`${isToggle ? "hidden" : "md:flex md:items-center md:gap-3 hidden"}`}
             >
               <img src="/logo.png" alt="logo" className={"w-6 h-6"} />
               <p className="text-lg">MovieStream</p>
@@ -40,7 +40,7 @@ const Slidebar = () => {
             </div>
           </div>
         </div>
-        <GoogleSignIn isToggle={isToggle}/>
+        <GoogleSignIn isToggle={isToggle} />
       </div>
     </>
   );
