@@ -37,10 +37,17 @@ const HomeTvSeries = () => {
           <div className="flex flex-row h-96 w-full gap-4">
             {/* StreamPlatform container */}
             <div className="w-full h-full">
-              <StreamPlatform
-                trailerUrl={tvShows[0].trailerUrl}
-                movieDetails={tvShows[0]}
-              />
+              {type==="movies"?(
+                <StreamPlatform
+                  trailerUrl={tvShows[1].trailerUrl}
+                  movieDetails={tvShows[1]}
+                />
+              ):(
+                <StreamPlatform
+                  trailerUrl={tvShows[0].trailerUrl}
+                  movieDetails={tvShows[0]}
+                />
+              )}
             </div>
           </div>
         </div>

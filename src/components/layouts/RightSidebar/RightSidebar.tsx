@@ -3,7 +3,7 @@ import TopRatedTvshow from "./TopRatedTvshow"
 
 const RightSidebar = () => {
   return (
-    <div className="h-full w-[400px] gap-5 p-5 flex flex-col items-center border-l-[0.5px] border-gray-dark/50">
+    <div className="lg:h-full lg:w-[400px] lg:gap-5 lg:p-5 lg:flex lg:flex-col lg:items-center lg:border-l-[0.5px] lg:border-gray-dark/50 hidden">
         <TopRatedTvshow />
         <FavoriteShow />
     </div>
