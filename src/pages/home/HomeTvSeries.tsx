@@ -3,11 +3,13 @@ import { StreamPlatform } from "@/_components/Dialog";
 import { useCallback, useEffect, useState } from "react";
 import useType from "@/store/useType";
 import {
+  getMoviesTrailer,
   getTopTrendingMovies,
   getTopTrendingTvShows,
 } from "@/lib/api/Movies/movies";
 const HomeTvSeries = () => {
   const [topTrending, setTopTrending] = useState<any[]>([]);
+  const [topTrailer, setTopTrailer] = useState<any[]>([]);
   const type = useType((state) => state.type);
 
   const getTopTrending = useCallback(async () => {
@@ -16,6 +18,11 @@ const HomeTvSeries = () => {
       if (type === "movies") {
         const response = await getTopTrendingMovies(1);
         setTopTrending(response.data.results);
+        const id =topTrending[0].id;
+        const trailer = await getMoviesTrailer(id);
+        console.log("Trailer haru: ", trailer.data.results);
+        console.log("Yo chai Trailer HO hai: ",trailer.data.results.filter((t: any) => t.type === "Trailer")[0])
+        setTopTrailer(trailer.data.results);
       } else if(type==="tv") {
         console.log("Reached Here!");
         const response = await getTopTrendingTvShows(1);
