@@ -18,6 +18,7 @@ const HomeTvSeries = () => {
       if (type === "movies") {
         const response = await getTopTrendingMovies(1);
         setTopTrending(response.data.results);
+        console.log("Top Trending: ",response.data.results);
         const id =topTrending[0].id;
         const trailer = await getMoviesTrailer(id);
         console.log("Trailer haru: ", trailer.data.results);
