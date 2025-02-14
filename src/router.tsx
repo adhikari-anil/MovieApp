@@ -1,20 +1,51 @@
-import { createBrowserRouter, createRoutesFromElements, Route, Navigate } from "react-router-dom"
-import Layout from "./pages/layout"
-import Search from "./pages/search/Search"
-import TopRatedShows from "./pages/topRatedShow/TopRatedShow"
-import Favourites from "./pages/favourite/Favourite"
-import HomeTvSeries from "./pages/home/HomeTvSeries"
+import { createBrowserRouter, Navigate } from "react-router-dom";
+//import Search from "./pages/search/Search"
+//import TopRatedShows from "./pages/topRatedShow/TopRatedShow"
+//import Favourites from "./pages/favourite/Favourite"
+import HomeTvSeries from "./pages/home/HomeTvSeries";
+import App from "./App";
+import Search from "./pages/search/Search";
+//import FavoriteShow from "./components/layouts/RightSidebar/FavoriteShow";
+import TopRatedShow from "./pages/topRatedShow/TopRatedShow";
+import Favourite from "./pages/favourite/Favourite";
 
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <Route path="/" element={<Layout />}>
-            <Route path="/" element={<Navigate to={"/homemovies"}/>}/>
-            <Route path="/home" element={<HomeTvSeries />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/favorites" element={<Favourites />} />
-            <Route path="/top-rated" element={<TopRatedShows />} />
-        </Route>
-    )
-)
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/home/movies" replace />,
+  },
+  {
+    path: "/home",
+    element: <App />,
+    children: [
+      { index: true, element: <Navigate to={"movies"} replace /> },
+      { path: "movies", element: <HomeTvSeries /> },
+      //{ path: "movies/:movieId", element: <MovieDetails /> },
+      { path: "tv-series", element: <HomeTvSeries /> },
+      //{ path: "tv-series/:tvId", element: <TVShowDetails /> },
+      {
+        path: "favorites",
+        children: [
+          { path: "movies", element: <Favourite /> },
+          { path: "tv-series", element: <Favourite /> },
+        ],
+      },
+      {
+        path: "search",
+        children: [
+          { path: "movies", element: <Search /> },
+          { path: "tv-series", element: <Search /> },
+        ],
+      },
+      {
+        path: "top-rated",
+        children: [
+          { path: "movies", element: <TopRatedShow /> },
+          { path: "tv-series", element: <TopRatedShow /> },
+        ],
+      },
+    ],
+  },
+]);
 
-export default router
+export default router;

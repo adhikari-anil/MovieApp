@@ -1,7 +1,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useType from "@/store/useType";
-import HomeTvSeries from "@/pages/home/HomeTvSeries";
+// import HomeTvSeries from "@/pages/home/HomeTvSeries";
+import { Outlet } from "react-router-dom";
 
 const HeadComponent = () => {
   // const [movie, setToggle] = useState("tvshows");
@@ -33,7 +34,7 @@ const HeadComponent = () => {
             className="h-full data-[state=active]:h-full"
           >
             <ScrollArea className="h-full">
-              <HomeTvSeries />
+              <Outlet />
             </ScrollArea>
           </TabsContent>
         </div>

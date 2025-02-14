@@ -8,8 +8,6 @@ interface IMenuProps {
 }
 
 const MenuItem = ({name,icon,path, isToggle}: IMenuProps) => {
-    //const {pathname} = useLocation();
-
   return (
     <Link to={path} className={`${isToggle?"flex justify-center items-center gap-5":"flex items-center gap-5"}`}>
       <div className={`${isToggle?"flex justify-center items-center gap-5":"flex gap-3"}`}>

@@ -2,6 +2,8 @@ import { tvShows } from "@/constant/TvShows";
 import { StreamPlatform } from "@/_components/Dialog";
 import { useCallback, useEffect, useState } from "react";
 import useType from "@/store/useType";
+import useTrendingStore from "@/store/useContentData";
+
 import {
   getMoviesTrailer,
   getTopTrendingMovies,
@@ -9,6 +11,7 @@ import {
 } from "@/lib/api/Movies/movies";
 const HomeTvSeries = () => {
   const [topTrending, setTopTrending] = useState<any[]>([]);
+  const setTrending = useTrendingStore((state)=>state.setTrending);
   const [topTrailer, setTopTrailer] = useState<any[]>([]);
   const type = useType((state) => state.type);
 
@@ -18,6 +21,7 @@ const HomeTvSeries = () => {
       if (type === "movies") {
         const response = await getTopTrendingMovies(1);
         setTopTrending(response.data.results);
+        setTrending(topTrending);
         console.log("Top Trending: ",response.data.results);
         const id =topTrending[0].id;
         const trailer = await getMoviesTrailer(id);
