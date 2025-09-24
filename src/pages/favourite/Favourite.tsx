@@ -6,20 +6,21 @@ import {
 } from "@/lib/api/Movies/movies";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useType from "@/store/useType";
+import { Movie } from "@/types/mediaTypes";
 
 const FavoriteShow = () => {
-  const [topRatedMovies, setTopRatedMovies] = useState<any[]>([]);
+  const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
   const type = useType((state) => state.type);
 
   const getTopRatedShow = useCallback(async () => {
     try {
       if (type === "movies") {
         const response = await getTopTrendingMovies(1);
-        console.log("From MovieAPI: ", response.data.results);
+        //console.log("From MovieAPI: ", response.data.results);
         setTopRatedMovies(response.data.results);
       } else {
         const response = await getTopTrendingTvShows(1);
-        console.log("From MovieAPI: ", response.data.results);
+        //console.log("From MovieAPI: ", response.data.results);
         setTopRatedMovies(response.data.results);
       }
     } catch (error) {
@@ -36,8 +37,12 @@ const FavoriteShow = () => {
         {topRatedMovies.map((movie, index) => (
           <div className="grid grid-cols-3 gap-1 w-full">
             <Card
-              title={movie.original_title || movie.original_name}
-              date={movie.release_date || movie.first_air_date}
+              title={
+                movie.original_title || movie.original_name || "Undefined Title"
+              }
+              date={
+                movie.release_date || movie.first_air_date || "Unknown Date"
+              }
               rating={movie.vote_average}
               poster_path={movie.poster_path}
               key={index}

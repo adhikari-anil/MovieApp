@@ -6,8 +6,8 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config)=>{
     const token = import.meta.env.VITE_THE_MOVIE_DB_BEARER_TOKEN;
-    console.log(token);
-    console.log(import.meta.env);
+    //console.log(token);
+    //console.log(import.meta.env);
     if(token){
         config.headers["Authorization"]=`Bearer ${token}`
     }
