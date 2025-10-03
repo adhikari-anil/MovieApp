@@ -8,6 +8,7 @@ import Search from "./pages/search/Search";
 //import FavoriteShow from "./components/layouts/RightSidebar/FavoriteShow";
 import TopRatedShow from "./pages/topRatedShow/TopRatedShow";
 import Favourite from "./pages/favourite/Favourite";
+import DetailandTrailer from "./pages/details/DetailandTrailer";
 
 const router = createBrowserRouter([
   {
@@ -20,9 +21,9 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to={"movies"} replace /> },
       { path: "movies", element: <HomeTvSeries /> },
-      //{ path: "movies/:movieId", element: <MovieDetails /> },
+      { path: "movies/:movieId", element: <DetailandTrailer /> },
       { path: "tv-series", element: <HomeTvSeries /> },
-      //{ path: "tv-series/:tvId", element: <TVShowDetails /> },
+      { path: "tv-series/:tvId", element: <DetailandTrailer /> },
       {
         path: "favorites",
         children: [

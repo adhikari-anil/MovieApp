@@ -1,7 +1,7 @@
 import { StreamPlatform } from "@/_components/Dialog";
 import { useCallback, useEffect, useState } from "react";
 import useType from "@/store/useType";
-//import useTrendingStore from "@/store/useContentData";
+import useTrendingStore from "@/store/useContentData";
 
 import {
   getMoviesTrailer,
@@ -10,10 +10,11 @@ import {
 } from "@/lib/api/Movies/movies";
 
 import { Movie, VideoResponse } from "@/types/mediaTypes";
+import { Link } from "react-router-dom";
 
 const HomeTvSeries = () => {
   const [topTrending, setTopTrending] = useState<Movie[]>([]);
-  //const setTrending = useTrendingStore((state) => state.setTrending);
+  const setTrending = useTrendingStore((state) => state.setTrending);
   const [topTrailer, setTopTrailer] = useState<VideoResponse>();
   const type = useType((state) => state.type);
 
@@ -23,7 +24,7 @@ const HomeTvSeries = () => {
       if (type === "movies") {
         const response = await getTopTrendingMovies(1);
         setTopTrending(response.data.results);
-        //setTrending(topTrending);
+        setTrending(response.data.results);
         console.log("Top Trending: ", response.data.results);
         const id = response.data.results[0].id;
         const trailer = await getMoviesTrailer(id);
@@ -75,6 +76,7 @@ const HomeTvSeries = () => {
             poster_path={movie.poster_path}
             type={type}
             key={index}
+            id={movie.id}
           />
         ))}
       </div>
@@ -90,29 +92,32 @@ interface props {
   date: string;
   poster_path: string;
   type: string;
+  id: string;
 }
 
-const MovieCard = ({ rating, title, poster_path, date, type }: props) => {
+const MovieCard = ({ rating, title, poster_path, date, type, id }: props) => {
   const img_path = `https://image.tmdb.org/t/p/original/${poster_path}`;
   return (
-    <div className="relative flex flex-col gap-2 w-full">
-      <div className="aspect-[3/4] rounded-lg overflow-hidden">
-        <img
-          src={img_path}
-          alt="Hello World"
-          className="w-full h-full transition-all hover:scale-[1.15]"
-        />
+    <Link to={`/home/${type}/${id}`}>
+      <div className="relative flex flex-col gap-2 w-full">
+        <div className="aspect-[3/4] rounded-lg overflow-hidden">
+          <img
+            src={img_path}
+            alt="Hello World"
+            className="w-full h-full transition-all hover:scale-[1.15]"
+          />
+        </div>
+        {/* Favourite section */}
+        {/* description */}
+        <div className="flex p-2 justify-between gap-4">
+          <p>{date?.substring(0, 4)}</p>
+          <span className="rounded-full border border-gray-600 w-fit px-2">
+            {type === "movies" ? "Movie" : "Series"}
+          </span>
+          <span className="flex items-center">{`${rating}`.substring(0, 3)}</span>
+        </div>
+        <p className="w-full text-white p-2">{title}</p>
       </div>
-      {/* Favourite section */}
-      {/* description */}
-      <div className="flex p-2 justify-between gap-4">
-        <p>{date?.substring(0, 4)}</p>
-        <span className="rounded-full border border-gray-600 w-fit px-2">
-          {type === "movies" ? "Movie" : "Series"}
-        </span>
-        <span className="flex items-center">{`${rating}`.substring(0, 3)}</span>
-      </div>
-      <p className="w-full text-white p-2">{title}</p>
-    </div>
+    </Link>
   );
 };

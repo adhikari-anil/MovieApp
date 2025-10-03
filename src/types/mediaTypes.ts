@@ -5,6 +5,7 @@ export type Movie = {
   first_air_date?: string;
   vote_average: string;
   poster_path: string;
+  id: string;
 };
 
 export interface IMenuProps {
