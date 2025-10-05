@@ -10,9 +10,10 @@ import { PlayCircle, Info } from "lucide-react";
 
 interface Movie {
   trailerUrl: string;
+  movieInfo?: any;
 }
 
-export function StreamPlatform({ trailerUrl }: Movie) {
+export function StreamPlatform({ trailerUrl, movieInfo }: Movie) {
   const [isHovered, setIsHovered] = useState(false);
 
   // const getEmbedUrl = (url) => {
@@ -20,6 +21,8 @@ export function StreamPlatform({ trailerUrl }: Movie) {
   //   console.log(videoId);
   //   return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
   // };
+
+  const img_path = `https://image.tmdb.org/t/p/original/${movieInfo.poster_path}`;
 
   return (
     <Dialog>
@@ -29,6 +32,15 @@ export function StreamPlatform({ trailerUrl }: Movie) {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
+          <div className="relative flex flex-col gap-2 w-full">
+            <div className="aspect-[3/4] rounded-lg overflow-hidden">
+              <img
+                src={img_path}
+                alt="Hello World"
+                className="w-full h-full transition-all hover:scale-[1.15]"
+              />
+            </div>
+          </div>
           {/* Overlay */}
           <div
             className={`absolute inset-0 flex items-center justify-center 
@@ -44,11 +56,11 @@ export function StreamPlatform({ trailerUrl }: Movie) {
             {/* Movie Info Overlay */}
             {isHovered && (
               <div className="absolute bottom-4 left-4 text-white z-10">
-                <h3 className="text-lg font-bold">Movie</h3>
+                <h3 className="text-lg font-bold">{movieInfo.original_title}</h3>
                 <div className="flex items-center space-x-2 mt-1">
                   <Info className="w-4 h-4" />
                   <span className="text-sm">
-                    Rating: {10/10}
+                    Rating: {movieInfo.rating}
                   </span>
                 </div>
               </div>
